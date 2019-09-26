@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { PedidoService } from 'src/app/shared/pedido.service';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-pedido',
@@ -7,9 +9,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PedidoComponent implements OnInit {
 
-  constructor() { }
+  constructor(private service:PedidoService ) { }
 
   ngOnInit() {
+    this.resetForm();
+  }
+
+  resetForm(form?:NgForm){
+    if(form = null)
+    form.resetForm();
+    this.service.formData = {
+      PedidoID:null,
+      PedidoNo:Math.floor(10000+Math.random()*900000).toString(),
+      ClienteID:0,
+      PMetodo:'',
+      Gtotal:0 
+    }
   }
 
 }
