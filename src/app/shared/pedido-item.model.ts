@@ -3,4 +3,7 @@ export class PedidoItem {
     PedidoID:number;
     ItemID:number;
     Cantidad:number;
+    itemNombre:string;
+    Precio:number;
+    Total:number;
 }
