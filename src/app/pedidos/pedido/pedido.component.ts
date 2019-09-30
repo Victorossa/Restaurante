@@ -30,8 +30,8 @@ export class PedidoComponent implements OnInit {
 
   }
 
-  AgregarOEditarPedido(){
-    alert('Prueba Item');
+  AgregarOEditarPedido(pedidoItemIndex,PedidoID){
+    
   }
 
 }

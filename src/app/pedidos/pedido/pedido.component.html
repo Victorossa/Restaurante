@@ -47,7 +47,7 @@
             <th>Cantidad</th>
             <th>Total</th>
             <th>
-               <a class="btn btn-sm btn-success text-white" (click)="AgregarOEditarPedido()"><i class="fa fa-plus"></i> Agregar Item</a> 
+               <a class="btn btn-sm btn-success text-white" (click)="AgregarOEditarPedido(null,service.formData.PedidoID)"><i class="fa fa-plus"></i> Agregar Item</a> 
             </th>
         </thead>
 
@@ -57,12 +57,14 @@
                         No se seleccionó ningún alimento para este pedido..
                 </td>
             </tr>
-            <tr *ngFor="let itemp of service.pedidosItems">
+            <tr *ngFor="let itemp of service.pedidosItems;let i=index;">
                 <td>{{itemp.ItemNombre}}</td>
                 <td>{{itemp.Precio}}</td>
                 <td>{{itemp.Cantidad}}</td>
                 <td>{{itemp.Total}}</td>
-                <td></td>
+                <td>
+                    <a class="btn btn-info btn-success text-white" (click)="AgregarOEditarPedido(i,service.formData.PedidoID)"><i class="fa fa-pencil"></i></a> 
+                </td>
             </tr>
         </tbody>
     </table>
