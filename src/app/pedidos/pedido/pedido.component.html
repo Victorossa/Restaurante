@@ -42,17 +42,19 @@
     <!--Items de Tabla-->
     <table class="table table-borderless">
         <thead class="thead-light">
-            <th>Item</th>
+            <th>Comida</th>
             <th>Precio</th>
             <th>Cantidad</th>
             <th>Total</th>
-            <th></th>
+            <th>
+               <a class="btn btn-sm btn-success text-white" (click)="AgregarOEditarPedido()"><i class="fa fa-plus"></i> Agregar Item</a> 
+            </th>
         </thead>
 
         <tbody>
             <tr *ngIf="service.pedidosItems.length==0">
-                <td class="font-italic text-center">
-                    No food item selected for this order.
+                <td class="font-italic text-center" colspan="5">
+                        No se seleccionó ningún alimento para este pedido..
                 </td>
             </tr>
             <tr *ngFor="let itemp of service.pedidosItems">

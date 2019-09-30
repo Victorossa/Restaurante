@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PedidoService } from 'src/app/shared/pedido.service';
 import { NgForm } from '@angular/forms';
+import { Alert } from 'selenium-webdriver';
 
 @Component({
   selector: 'app-pedido',
@@ -27,6 +28,10 @@ export class PedidoComponent implements OnInit {
     };
     this.service.pedidosItems = [];
 
+  }
+
+  AgregarOEditarPedido(){
+    alert('Prueba Item');
   }
 
 }
