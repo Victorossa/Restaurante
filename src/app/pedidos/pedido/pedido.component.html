@@ -48,7 +48,13 @@
             <th>Total</th>
             <th></th>
         </thead>
+
         <tbody>
+            <tr *ngIf="service.pedidosItems.lengt==0">
+                <td class="font-italic text-center">
+                    No food item selected for this order.
+                </td>
+            </tr>
             <tr *ngFor="let itemp of service.pedidosItems">
                 <td>{{itemp.ItemNombre}}</td>
                 <td>{{itemp.Precio}}</td>

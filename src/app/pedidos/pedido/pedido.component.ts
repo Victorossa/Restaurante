@@ -24,7 +24,9 @@ export class PedidoComponent implements OnInit {
       ClienteID:0,
       PMetodo:'',
       Gtotal:0 
-    }
+    };
+    this.service.pedidosItems = [];
+
   }
 
 }
