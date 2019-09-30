@@ -3,7 +3,7 @@ export class PedidoItem {
     PedidoID:number;
     ItemID:number;
     Cantidad:number;
-    itemNombre:string;
+    ItemNombre:string;
     Precio:number;
     Total:number;
 }

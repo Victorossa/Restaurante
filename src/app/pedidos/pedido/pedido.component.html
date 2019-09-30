@@ -39,6 +39,25 @@
             </div>
         </div>
     </div>
+    <!--Items de Tabla-->
+    <table class="table table-borderless">
+        <thead class="thead-light">
+            <th>Item</th>
+            <th>Precio</th>
+            <th>Cantidad</th>
+            <th>Total</th>
+            <th></th>
+        </thead>
+        <tbody>
+            <tr *ngFor="let itemp of service.pedidosItems">
+                <td>{{itemp.ItemNombre}}</td>
+                <td>{{itemp.Precio}}</td>
+                <td>{{itemp.Cantidad}}</td>
+                <td>{{itemp.Total}}</td>
+                <td></td>
+            </tr>
+        </tbody>
+    </table>
     <div class="form-group">
         <button type="submit" class="btn btn-dark"><i class="fa fa-database"></i> Guardar</button>
     </div>
