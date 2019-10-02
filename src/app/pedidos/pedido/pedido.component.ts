@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { PedidoService } from 'src/app/shared/pedido.service';
 import { NgForm } from '@angular/forms';
 import { Alert } from 'selenium-webdriver';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog,MatDialogConfig } from '@angular/material/dialog';
 import { PedidoItemsComponent } from '../pedido-items/pedido-items.component';
 
 @Component({
@@ -33,7 +33,12 @@ export class PedidoComponent implements OnInit {
   }
 
   AgregarOEditarPedido(pedidoItemIndex,PedidoID){
-    this.dialog.open(PedidoItemsComponent); 
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.autoFocus = true;
+    dialogConfig.disableClose = true;
+    dialogConfig.width="50%";
+    dialogConfig.data = {pedidoItemIndex,PedidoID}
+    this.dialog.open(PedidoItemsComponent,dialogConfig); 
   }
 
 }
