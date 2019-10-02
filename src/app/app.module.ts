@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule} from "@angular/platform-browser/animations"
+import { MatDialogModule } from '@angular/material/dialog'
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { PedidosComponent } from './pedidos/pedidos.component';
@@ -20,7 +21,8 @@ import { PedidoService } from './shared/pedido.service';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MatDialogModule
   ],
   providers: [PedidoService],
   bootstrap: [AppComponent]
