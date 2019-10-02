@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { PedidoService } from 'src/app/shared/pedido.service';
 import { NgForm } from '@angular/forms';
 import { Alert } from 'selenium-webdriver';
+import { MatDialog } from '@angular/material/dialog';
+import { PedidoItemsComponent } from '../pedido-items/pedido-items.component';
 
 @Component({
   selector: 'app-pedido',
@@ -10,7 +12,7 @@ import { Alert } from 'selenium-webdriver';
 })
 export class PedidoComponent implements OnInit {
 
-  constructor(private service:PedidoService ) { }
+  constructor(private service:PedidoService,private dialog:MatDialog ) { }
 
   ngOnInit() {
     this.resetForm();
@@ -31,7 +33,7 @@ export class PedidoComponent implements OnInit {
   }
 
   AgregarOEditarPedido(pedidoItemIndex,PedidoID){
-    
+    this.dialog.open(PedidoItemsComponent); 
   }
 
 }

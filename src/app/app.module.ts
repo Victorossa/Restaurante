@@ -24,6 +24,7 @@ import { PedidoService } from './shared/pedido.service';
     BrowserAnimationsModule,
     MatDialogModule
   ],
+  entryComponents:[PedidoItemsComponent],
   providers: [PedidoService],
   bootstrap: [AppComponent]
 })
