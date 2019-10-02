@@ -14,6 +14,15 @@ formData:PedidoItem;
     public dialogRef:MatDialogRef<PedidoItemsComponent>) { }
 
   ngOnInit() {
+    this.formData = {
+      PedidoItemID:null,
+      PedidoID: this.data.PedidoID,
+      ItemID:0,
+      ItemNombre:'',
+      Precio:0,
+      Cantidad:0,
+      Total:0
+    }
   }
 
 }

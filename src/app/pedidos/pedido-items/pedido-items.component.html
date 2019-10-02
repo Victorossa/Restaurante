@@ -1,1 +1,38 @@
-<p>pedido-items works!</p>
+<h4 class="display-4">Orden</h4>
+<hr>
+<form #form="ngForm" autocomplete="off">
+    <div class="form-group">
+        <label>Item Comida</label>
+        <select name="ItemID" #ItemID="ngModel" [(ngModel)]="formData.ItemID" class="form-control">
+            <option value="0">--Select--</option>
+        </select>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label>Precio.</label>
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <div class="input-group-text">$</div>
+                </div>
+                <input name="Precio" #Precio="ngModel" [(ngModel)]="formData.Precio" class="form-control" readonly>
+            </div>
+        </div>
+        <div class="form-group col-md-6">
+            <label>Cantidad.</label>
+            <input name="Cantidad" #Cantidad="ngModel" [(ngModel)]="formData.Cantidad" class="form-control">
+        </div>
+    </div>
+    <div class="form-group">
+        <label>Total.</label>
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <div class="input-group-text">$</div>
+            </div>
+            <input name="Total" #Total="ngModel" [(ngModel)]="formData.Total" class="form-control" readonly>
+        </div>
+    </div>
+    <div class="form-group">
+        <button type="submit" class="btn btn-dark"><i class="fa fa-database"></i> Guardar</button>
+        <button type="button" class="btn btn-outline-dark ml-1"><i class="fa fa-close"></i> Salir</button>
+    </div>
+</form>
