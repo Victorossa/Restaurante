@@ -1,6 +1,8 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { MAT_DIALOG_DATA,MatDialogRef } from '@angular/material';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 import { PedidoItem } from 'src/app/shared/pedido-item.model';
+import { ItemService } from 'src/app/shared/item.service';
+import { Item } from 'src/app/shared/item.model';
 
 @Component({
   selector: 'app-pedido-items',
@@ -8,20 +10,24 @@ import { PedidoItem } from 'src/app/shared/pedido-item.model';
   styles: []
 })
 export class PedidoItemsComponent implements OnInit {
-formData:PedidoItem;
+  formData: PedidoItem;
+  itemList: Item[];
   constructor(
     @Inject(MAT_DIALOG_DATA) public data,
-    public dialogRef:MatDialogRef<PedidoItemsComponent>) { }
+    public dialogRef: MatDialogRef<PedidoItemsComponent>,
+    private itemService: ItemService) { }
+    
 
   ngOnInit() {
+    this.itemService.getItemList().then(res => this.itemList = res as Item[])
     this.formData = {
-      PedidoItemID:null,
+      PedidoItemID: null,
       PedidoID: this.data.PedidoID,
-      ItemID:0,
-      ItemNombre:'',
-      Precio:0,
-      Cantidad:0,
-      Total:0
+      ItemID: 0,
+      ItemNombre: '',
+      Precio: 0,
+      Cantidad: 0,
+      Total: 0
     }
   }
 

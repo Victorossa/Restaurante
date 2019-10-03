@@ -3,6 +3,8 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule} from "@angular/platform-browser/animations"
 import { MatDialogModule } from '@angular/material/dialog'
+import { HttpClientModule } from '@angular/common/http';
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { PedidosComponent } from './pedidos/pedidos.component';
@@ -22,7 +24,8 @@ import { PedidoService } from './shared/pedido.service';
     AppRoutingModule,
     FormsModule,
     BrowserAnimationsModule,
-    MatDialogModule
+    MatDialogModule,
+    HttpClientModule
   ],
   entryComponents:[PedidoItemsComponent],
   providers: [PedidoService],

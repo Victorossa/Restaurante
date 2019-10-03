@@ -4,7 +4,8 @@
     <div class="form-group">
         <label>Item Comida</label>
         <select name="ItemID" #ItemID="ngModel" [(ngModel)]="formData.ItemID" class="form-control">
-            <option value="0">--Select--</option>
+            <option value="0">--Select--ppp</option>
+            <option *ngFor="let item of itemList" value="{{item.ItemID}}">{{item.Nombre}}</option>
         </select>
     </div>
     <div class="form-row">
