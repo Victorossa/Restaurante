@@ -16,7 +16,7 @@ export class PedidoItemsComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data,
     public dialogRef: MatDialogRef<PedidoItemsComponent>,
     private itemService: ItemService) { }
-    
+
 
   ngOnInit() {
     this.itemService.getItemList().then(res => this.itemList = res as Item[])
@@ -30,5 +30,15 @@ export class PedidoItemsComponent implements OnInit {
       Total: 0
     }
   }
+
+  updatePrice(ctrl) {
+    if (ctrl.selectedIndex == 0) {
+      this.formData.Precio = 0;
+    }
+    else{
+      this.formData.Precio = this.itemList[ctrl.selectedIndex-1].Precio;
+    }
+  }
+
 
 }
