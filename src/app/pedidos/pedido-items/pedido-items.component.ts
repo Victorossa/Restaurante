@@ -34,10 +34,16 @@ export class PedidoItemsComponent implements OnInit {
   updatePrice(ctrl) {
     if (ctrl.selectedIndex == 0) {
       this.formData.Precio = 0;
+      this.formData.ItemNombre = '';
     }
     else{
       this.formData.Precio = this.itemList[ctrl.selectedIndex-1].Precio;
+      this.formData.ItemNombre = this.itemList[ctrl.selectedIndex-1].Nombre;
     }
+  }
+
+  updateTotal(){
+    this.formData.Total = parseFloat((this.formData.Cantidad * this.formData.Precio).toFixed(2));
   }
 
 

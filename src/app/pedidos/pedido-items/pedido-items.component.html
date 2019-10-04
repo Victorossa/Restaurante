@@ -1,6 +1,9 @@
 <h4 class="display-4">Orden</h4>
 <hr>
 <form #form="ngForm" autocomplete="off">
+    <input type="hidden" name="PedidoItemID" #PedidoItemID="ngModel" [(ngModel)]="formData.PedidoItemID">
+    <input type="hidden" name="PedidoID" #PedidoID="ngModel" [(ngModel)]="formData.PedidoID">
+    <input type="hidden" name="ItemNombre" #ItemNombre="ngModel" [(ngModel)]="formData.ItemNombre">
     <div class="form-group">
         <label>Item Comida</label>
         <select name="ItemID" #ItemID="ngModel" [(ngModel)]="formData.ItemID" class="form-control" (change)="updatePrice($event.target)">
@@ -20,7 +23,7 @@
         </div>
         <div class="form-group col-md-6">
             <label>Cantidad.</label>
-            <input name="Cantidad" #Cantidad="ngModel" [(ngModel)]="formData.Cantidad" class="form-control">
+            <input name="Cantidad" #Cantidad="ngModel" [(ngModel)]="formData.Cantidad" class="form-control" (keyup)="updateTotal()">
         </div>
     </div>
     <div class="form-group">
