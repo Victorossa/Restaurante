@@ -1,13 +1,13 @@
 <h4 class="display-4">Orden</h4>
 <hr>
-<form #form="ngForm" autocomplete="off">
+<form #form="ngForm" autocomplete="off" (submit)="onSubmit(form)">
     <input type="hidden" name="PedidoItemID" #PedidoItemID="ngModel" [(ngModel)]="formData.PedidoItemID">
     <input type="hidden" name="PedidoID" #PedidoID="ngModel" [(ngModel)]="formData.PedidoID">
     <input type="hidden" name="ItemNombre" #ItemNombre="ngModel" [(ngModel)]="formData.ItemNombre">
     <div class="form-group">
         <label>Item Comida</label>
-        <select name="ItemID" #ItemID="ngModel" [(ngModel)]="formData.ItemID" class="form-control" (change)="updatePrice($event.target)">
-            <option value="0">--Select--ppp</option>
+        <select name="ItemID" #ItemID="ngModel" [(ngModel)]="formData.ItemID" class="form-control" (change)="updatePrice($event.target)" [class.is-invalid]="!isValid && formData.ItemID==0">
+            <option value="0">--Selecciona un Producto--</option>
             <option *ngFor="let item of itemList" value="{{item.ItemID}}">{{item.Nombre}}</option>
         </select>
     </div>
@@ -23,7 +23,7 @@
         </div>
         <div class="form-group col-md-6">
             <label>Cantidad.</label>
-            <input name="Cantidad" #Cantidad="ngModel" [(ngModel)]="formData.Cantidad" class="form-control" (keyup)="updateTotal()">
+            <input name="Cantidad" #Cantidad="ngModel" [(ngModel)]="formData.Cantidad" class="form-control" (keyup)="updateTotal()" [class.is-invalid]="!isValid && formData.Cantidad==0">
         </div>
     </div>
     <div class="form-group">
@@ -37,6 +37,6 @@
     </div>
     <div class="form-group">
         <button type="submit" class="btn btn-dark"><i class="fa fa-database"></i> Guardar</button>
-        <button type="button" class="btn btn-outline-dark ml-1"><i class="fa fa-close"></i> Salir</button>
+        <button type="button" class="btn btn-outline-dark ml-1" [mat-dialog-close]><i class="fa fa-close"></i> Salir</button>
     </div>
 </form>

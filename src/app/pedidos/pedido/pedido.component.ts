@@ -41,4 +41,8 @@ export class PedidoComponent implements OnInit {
     this.dialog.open(PedidoItemsComponent,dialogConfig); 
   }
 
+  onDeletePedidoItem(pedidoItemID:number, i:number){
+    this.service.pedidosItems.splice(i,1);
+  }
+
 }
