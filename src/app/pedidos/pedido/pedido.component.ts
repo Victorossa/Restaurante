@@ -4,6 +4,8 @@ import { NgForm } from '@angular/forms';
 import { Alert } from 'selenium-webdriver';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { PedidoItemsComponent } from '../pedido-items/pedido-items.component';
+import { ClienteService } from 'src/app/shared/cliente.service';
+import { Cliente } from 'src/app/shared/cliente.model';
 
 @Component({
   selector: 'app-pedido',
@@ -12,10 +14,14 @@ import { PedidoItemsComponent } from '../pedido-items/pedido-items.component';
 })
 export class PedidoComponent implements OnInit {
 
-  constructor(private service: PedidoService, private dialog: MatDialog) { }
+  clietesListado: Cliente[];
+
+  constructor(private service: PedidoService, private dialog: MatDialog, private clienteservice: ClienteService) { }
 
   ngOnInit() {
     this.resetForm();
+    this.clienteservice.getClienteList().then(res => this.clietesListado = res as Cliente[]);
+
   }
 
   resetForm(form?: NgForm) {
@@ -38,7 +44,7 @@ export class PedidoComponent implements OnInit {
     dialogConfig.disableClose = true;
     dialogConfig.width = "50%";
     dialogConfig.data = { pedidoItemIndex, PedidoID }
-    this.dialog.open(PedidoItemsComponent, dialogConfig).afterClosed().subscribe(res=> {
+    this.dialog.open(PedidoItemsComponent, dialogConfig).afterClosed().subscribe(res => {
       this.updateGrandTotal();
     });
   }
@@ -51,9 +57,9 @@ export class PedidoComponent implements OnInit {
 
   updateGrandTotal() {
     this.service.formData.Gtotal = this.service.pedidosItems.reduce((prev, curr) => {
-      return prev + curr.Total;      
+      return prev + curr.Total;
     }, 0);
-    this.service.formData.Gtotal = parseFloat(this.service.formData.Gtotal.toFixed(2));
+    this.service.formData.Gtotal = parseFloat(this.service.formData.Gtotal.toFixed(3));
   }
 
 }
