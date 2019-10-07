@@ -12,9 +12,11 @@ import { PedidoService } from 'src/app/shared/pedido.service';
   styles: []
 })
 export class PedidoItemsComponent implements OnInit {
+  
   formData: PedidoItem;
   itemList: Item[];
   isValid: boolean = true;
+  
   constructor(
     @Inject(MAT_DIALOG_DATA) public data,
     public dialogRef: MatDialogRef<PedidoItemsComponent>,

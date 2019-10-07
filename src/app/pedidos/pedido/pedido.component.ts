@@ -15,13 +15,13 @@ import { Cliente } from 'src/app/shared/cliente.model';
 export class PedidoComponent implements OnInit {
 
   clietesListado: Cliente[];
+  isValid: boolean = true;
 
   constructor(private service: PedidoService, private dialog: MatDialog, private clienteservice: ClienteService) { }
 
   ngOnInit() {
     this.resetForm();
     this.clienteservice.getClienteList().then(res => this.clietesListado = res as Cliente[]);
-
   }
 
   resetForm(form?: NgForm) {
@@ -35,7 +35,6 @@ export class PedidoComponent implements OnInit {
       Gtotal: 0
     };
     this.service.pedidosItems = [];
-
   }
 
   AgregarOEditarPedido(pedidoItemIndex, PedidoID) {
@@ -54,12 +53,29 @@ export class PedidoComponent implements OnInit {
     this.updateGrandTotal();
   }
 
-
   updateGrandTotal() {
     this.service.formData.Gtotal = this.service.pedidosItems.reduce((prev, curr) => {
       return prev + curr.Total;
     }, 0);
     this.service.formData.Gtotal = parseFloat(this.service.formData.Gtotal.toFixed(3));
+  }
+
+  validateForm() {
+    this.isValid = true;
+    if (this.service.formData.ClienteID == 0)
+      this.isValid = false;
+    else if (this.service.pedidosItems.length == 0)
+      this.isValid = false;
+    return this.isValid;
+  }
+
+  onSubmit(form: NgForm) {
+    if (this.validateForm())
+    {
+      this.service.saveOrUpdatePedido().subscribe(res =>{
+        this.resetForm();
+      })
+    }
   }
 
 }
