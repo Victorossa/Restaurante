@@ -22,4 +22,8 @@ export class PedidoService {
     };
     return this.http.post(environment.apiURL + '/Pedido', body);
   }
+
+  getPedidosList(){
+    return this.http.get(environment.apiURL + '/Pedido').toPromise();
+   }
 }

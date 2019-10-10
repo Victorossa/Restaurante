@@ -18,7 +18,7 @@ export class PedidoComponent implements OnInit {
   clietesListado: Cliente[];
   isValid: boolean = true;
 
-  constructor(private service: PedidoService, private dialog: MatDialog, private clienteservice: ClienteService,private route : Router) { }
+  constructor(private service: PedidoService, private dialog: MatDialog, private clienteservice: ClienteService,private route : Router,) { }
 
   ngOnInit() {
     this.resetForm();
@@ -32,7 +32,7 @@ export class PedidoComponent implements OnInit {
       PedidoID: null,
       PedidoNo: Math.floor(10000 + Math.random() * 900000).toString(),
       ClienteID: 0,
-      PMetodo: '',
+      PMethod: '',
       Gtotal: 0
     };
     this.service.pedidosItems = [];
@@ -75,6 +75,7 @@ export class PedidoComponent implements OnInit {
     {
       this.service.saveOrUpdatePedido().subscribe(res =>{
         this.resetForm();
+        alert('Pedido Guardado Exitosamente!!!');
         this.route.navigate(['/pedidos']);
       })
     }

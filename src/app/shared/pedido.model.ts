@@ -2,6 +2,6 @@ export class Pedido {
     PedidoID:number;
     PedidoNo:string;
     ClienteID:number;
-    PMetodo:string;
+    PMethod:string;
     Gtotal:number;
 }
