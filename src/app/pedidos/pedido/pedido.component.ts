@@ -6,6 +6,7 @@ import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { PedidoItemsComponent } from '../pedido-items/pedido-items.component';
 import { ClienteService } from 'src/app/shared/cliente.service';
 import { Cliente } from 'src/app/shared/cliente.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-pedido',
@@ -17,7 +18,7 @@ export class PedidoComponent implements OnInit {
   clietesListado: Cliente[];
   isValid: boolean = true;
 
-  constructor(private service: PedidoService, private dialog: MatDialog, private clienteservice: ClienteService) { }
+  constructor(private service: PedidoService, private dialog: MatDialog, private clienteservice: ClienteService,private route : Router) { }
 
   ngOnInit() {
     this.resetForm();
@@ -74,6 +75,7 @@ export class PedidoComponent implements OnInit {
     {
       this.service.saveOrUpdatePedido().subscribe(res =>{
         this.resetForm();
+        this.route.navigate(['/pedidos']);
       })
     }
   }
