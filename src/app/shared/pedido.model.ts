@@ -3,5 +3,5 @@ export class Pedido {
     PedidoNo:string;
     ClienteID:number;
     PMethod:string;
-    Gtotal:number;
+    GTotal:number;
 }

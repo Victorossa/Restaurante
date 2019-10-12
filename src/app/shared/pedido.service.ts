@@ -26,4 +26,9 @@ export class PedidoService {
   getPedidosList(){
     return this.http.get(environment.apiURL + '/Pedido').toPromise();
    }
+
+   
+  getPedidosPorID(id:number):any{
+    return this.http.get(environment.apiURL + '/Pedido/' + id).toPromise();
+   }
 }

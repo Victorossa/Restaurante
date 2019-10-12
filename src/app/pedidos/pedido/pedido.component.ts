@@ -6,7 +6,7 @@ import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { PedidoItemsComponent } from '../pedido-items/pedido-items.component';
 import { ClienteService } from 'src/app/shared/cliente.service';
 import { Cliente } from 'src/app/shared/cliente.model';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-pedido',
@@ -18,10 +18,18 @@ export class PedidoComponent implements OnInit {
   clietesListado: Cliente[];
   isValid: boolean = true;
 
-  constructor(private service: PedidoService, private dialog: MatDialog, private clienteservice: ClienteService,private route : Router,) { }
+  constructor(private service: PedidoService, private dialog: MatDialog, private clienteservice: ClienteService, private route: Router, private currentRouter: ActivatedRoute) { }
 
   ngOnInit() {
-    this.resetForm();
+    let PedidoID = this.currentRouter.snapshot.paramMap.get('id');
+    if (PedidoID == null)
+      this.resetForm();
+    else {
+      this.service.getPedidosPorID(parseInt(PedidoID)).then(res => {
+        this.service.formData = res.Pedido;
+        this.service.pedidosItems = res.detallePedido;
+      });
+    }
     this.clienteservice.getClienteList().then(res => this.clietesListado = res as Cliente[]);
   }
 
@@ -33,7 +41,7 @@ export class PedidoComponent implements OnInit {
       PedidoNo: Math.floor(10000 + Math.random() * 900000).toString(),
       ClienteID: 0,
       PMethod: '',
-      Gtotal: 0
+      GTotal: 0
     };
     this.service.pedidosItems = [];
   }
@@ -55,10 +63,10 @@ export class PedidoComponent implements OnInit {
   }
 
   updateGrandTotal() {
-    this.service.formData.Gtotal = this.service.pedidosItems.reduce((prev, curr) => {
+    this.service.formData.GTotal = this.service.pedidosItems.reduce((prev, curr) => {
       return prev + curr.Total;
     }, 0);
-    this.service.formData.Gtotal = parseFloat(this.service.formData.Gtotal.toFixed(3));
+    this.service.formData.GTotal = parseFloat(this.service.formData.GTotal.toFixed(3));
   }
 
   validateForm() {
@@ -71,9 +79,8 @@ export class PedidoComponent implements OnInit {
   }
 
   onSubmit(form: NgForm) {
-    if (this.validateForm())
-    {
-      this.service.saveOrUpdatePedido().subscribe(res =>{
+    if (this.validateForm()) {
+      this.service.saveOrUpdatePedido().subscribe(res => {
         this.resetForm();
         alert('Pedido Guardado Exitosamente!!!');
         this.route.navigate(['/pedidos']);
